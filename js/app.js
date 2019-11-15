@@ -114,7 +114,7 @@ async function startCapture() {
   }
 }
 
-const stopCapture = e => {
+const stopCapture = () => {
   mediaRecorder.stop();
   util.console.log('Stopped.');
   util.console.log(videoTracks);
@@ -122,7 +122,11 @@ const stopCapture = e => {
   util.console.log(
     `${clipName} successfully recorded. See My Clips to download.`
   );
+  util.console.info('Getting your file ready...');
+  setTimeout(() => createFileUri(clipName), 1000);
+};
 
+const createFileUri = clipName => {
   try {
     videoTracks.forEach(track => {
       const videoUrl = track;
