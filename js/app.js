@@ -1,5 +1,8 @@
+const TITLE = 'Screenie Baby'.split('');
+const COLORS = ['red', 'teal', 'blue', 'green', 'yellow', 'pink'];
+
 const videoElement = document.querySelector('#viewWindow');
-const downloadElement = document.querySelector('#clip-files');
+const downloadElement = document.querySelector('#download--files');
 const consoleElement = document.querySelector('#console');
 const controlButtonElement = document.getElementsByName('control__button');
 const buttons = document.querySelectorAll('button');
@@ -8,6 +11,19 @@ buttons.forEach(button =>
 );
 let videoTracks = [];
 let mediaRecorder;
+
+const displayTitle = (title, colors) => {
+  const logoContainer = document.querySelector('.logo__letters');
+  const domElements = title.map(letter => {
+    const randColor = colors[Math.floor(Math.random() * COLORS.length)];
+    const randRotation = Math.floor(Math.random() * 12);
+    const randSign = Math.floor(Math.random() * 5) > 2 ? '+' : '-';
+    return letter === ' '
+      ? `<br class="logo__letter"/>`
+      : `<span style="float: left; transform: rotate(${randSign}${randRotation}deg)" class="logo__letter logo__letter--${randColor}">${letter.toUpperCase()}</span>`;
+  });
+  logoContainer.innerHTML = domElements.join('');
+};
 
 const handleClick = e => {
   const button = e.target;
@@ -25,7 +41,8 @@ const handleClick = e => {
         parent.id = 'stop';
         util.addClass(parent, 'pressed');
       }
-      startCapture();
+      const quality = document.querySelector('#videoQuality').value;
+      startCapture(quality);
       break;
     case 'stop':
     case 'stop__button--indicator':
@@ -91,16 +108,23 @@ const displayMediaOptions = {
   audio: false,
 };
 
-async function startCapture() {
+async function startCapture(quality) {
+  let captureStream = await navigator.mediaDevices.getDisplayMedia(
+    displayMediaOptions
+  );
+  let options = {
+    mimeType: 'video/webm; codecs=vp9',
+    videoBitsPerSecond: quality,
+  };
   try {
-    videoElement.srcObject = await navigator.mediaDevices.getDisplayMedia(
-      displayMediaOptions
-    );
-    mediaRecorder = new MediaRecorder(videoElement.srcObject);
+    videoElement.srcObject = captureStream;
+    mediaRecorder = new MediaRecorder(captureStream, options);
     mediaRecorder.mimeType = 'image/gif';
     mediaRecorder.ondataavailable = blob => {
       videoTracks.push(URL.createObjectURL(blob.data));
     };
+    util.console.log(mediaRecorder.mimeType);
+    util.console.log(mediaRecorder.videoBitsPerSecond);
     mediaRecorder.start();
     util.console.log('Recording...');
   } catch (err) {
@@ -115,30 +139,28 @@ async function startCapture() {
 }
 
 const stopCapture = () => {
-  mediaRecorder.stop();
-  util.console.log('Stopped.');
-  util.console.log(videoTracks);
-  const clipName = prompt('Enter a name for your video.');
-  util.console.log(
-    `${clipName} successfully recorded. See My Clips to download.`
-  );
-  util.console.info('Getting your file ready...');
-  setTimeout(() => createFileUri(clipName), 1000);
+  if (mediaRecorder) {
+    mediaRecorder.stop();
+    util.console.log('Stopped.');
+    const d = new Date();
+    const clipName = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}T${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    util.console.log(
+      `${clipName} successfully recorded. See My Clips to download.`
+    );
+    util.console.info('Getting your file ready...');
+    setTimeout(() => createFileUri(clipName), 1000);
+  }
 };
 
 const createFileUri = clipName => {
+  const cleanClipName = clipName.split(' ').join('');
   try {
     videoTracks.forEach(track => {
       const videoUrl = track;
-      const videoUrlElement = document.createElement('a');
-      const videoTitleElement = document.createElement('li');
-      videoUrlElement.href = videoUrl;
-      videoUrlElement.setAttribute('download', clipName.split(' ').join(''));
-      videoUrlElement.id = clipName.split(' ').join('');
-      videoTitleElement.textContent = clipName;
-      videoUrlElement.appendChild(videoTitleElement);
-      downloadElement.appendChild(videoUrlElement);
+      const videoDownloadElement = `<a id="${cleanClipName}" class="button__download" href="${videoUrl}" download="${cleanClipName}">${clipName}</a>`;
+      downloadElement.innerHTML += videoDownloadElement;
       videoElement.srcObject = null;
+      util.console.log('File added to download library.');
     });
     videoTracks = [];
   } catch (err) {
@@ -147,6 +169,7 @@ const createFileUri = clipName => {
 };
 
 (() => {
+  displayTitle(TITLE, COLORS);
   return !navigator.mediaDevices && !navigator.mediaDevices.getDisplayMedia
     ? util.console.error(`getUserMedia is not supported on your device.`)
     : null;

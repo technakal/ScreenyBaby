@@ -20,8 +20,6 @@
           ><span class="logo__letter logo__letter--teal">n</span
           ><span class="logo__letter logo__letter--yellow">i</span
           ><span class="logo__letter logo__letter--blue">e</span>
-        </div>
-        <div class="logo__letters">
           <span class="logo__letter logo__letter--red">B</span
           ><span class="logo__letter logo__letter--pink">a</span
           ><span class="logo__letter logo__letter--yellow">b</span
@@ -29,12 +27,21 @@
         </div>
       </h1>
       <div id="header__controls">
-        <div id="controls--console">
+        <div>
+          <label for="videoQuality">Video Quality</label>
+          <select name="videoQuality" id="videoQuality">
+            <option value="150000">Low</option>
+            <option value="500000">Medium</option>
+            <option value="1000000">High</option>
+            <option value="2500000">Super High</option>
+          </select>
+        </div>
+        <!-- <div id="controls--console">
           <button id="console__toggle" class="toggle__well">
             <div id="console__toggle--knob" class="toggle__knob"></div>
           </button>
           <label for="console__toggle">Console</label>
-        </div>
+        </div> -->
         <button
           id="record"
           name="control__button"
@@ -53,7 +60,7 @@
           I know, unreasonable, but it's true. If you close your browser without
           downloading your clips, they will disappear into the ether.
         </p>
-        <ul id="clip-files"></ul>
+        <div id="download--files"></div>
       </div>
     </main>
     <section id="console"></section>
