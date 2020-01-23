@@ -65,7 +65,7 @@ const handleClick = e => {
       toggleConsole(e.target.parentNode);
       break;
     default:
-      util.console.warn(`Somehow, you pressed a button that doesn't exist.`);
+      console.warn(`Somehow, you pressed a button that doesn't exist.`);
       break;
   }
 };
@@ -123,16 +123,14 @@ async function startCapture(quality) {
     mediaRecorder.ondataavailable = blob => {
       videoTracks.push(URL.createObjectURL(blob.data));
     };
-    util.console.log(mediaRecorder.mimeType);
-    util.console.log(mediaRecorder.videoBitsPerSecond);
     mediaRecorder.start();
-    util.console.log('Recording...');
+    console.log('Recording...');
   } catch (err) {
-    util.console.error(`Error: ${err}`);
-    util.console.info(
+    console.error(`Error: ${err}`);
+    console.info(
       "You either denied the request for screen capture, or you're using garbage Internet Explorer."
     );
-    util.console.warn(
+    console.warn(
       "If you're using Internet Explorer, stop. It's made of garbage and it hates you. Stop using it."
     );
   }
@@ -141,13 +139,11 @@ async function startCapture(quality) {
 const stopCapture = () => {
   if (mediaRecorder) {
     mediaRecorder.stop();
-    util.console.log('Stopped.');
+    console.log('Stopped.');
     const d = new Date();
     const clipName = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}T${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-    util.console.log(
-      `${clipName} successfully recorded. See My Clips to download.`
-    );
-    util.console.info('Getting your file ready...');
+    console.log(`${clipName} successfully recorded. See My Clips to download.`);
+    console.info('Getting your file ready...');
     setTimeout(() => createFileUri(clipName), 1000);
   }
 };
@@ -160,17 +156,24 @@ const createFileUri = clipName => {
       const videoDownloadElement = `<a id="${cleanClipName}" class="button__download" href="${videoUrl}" download="${cleanClipName}">${clipName}</a>`;
       downloadElement.innerHTML += videoDownloadElement;
       videoElement.srcObject = null;
-      util.console.log('File added to download library.');
+      console.log('File added to download library.');
+      autoDownloadFile(cleanClipName);
     });
     videoTracks = [];
   } catch (err) {
-    util.console.error(err);
+    console.error(err);
   }
+};
+
+const autoDownloadFile = id => {
+  console.log('Beginning download...');
+  document.getElementById(id).click();
+  console.log('File downloaded.');
 };
 
 (() => {
   displayTitle(TITLE, COLORS);
   return !navigator.mediaDevices && !navigator.mediaDevices.getDisplayMedia
-    ? util.console.error(`getUserMedia is not supported on your device.`)
+    ? console.error(`getUserMedia is not supported on your device.`)
     : null;
 })();
