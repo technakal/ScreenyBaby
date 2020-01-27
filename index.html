@@ -36,33 +36,22 @@
             <option value="2500000">Super High</option>
           </select>
         </div>
-        <!-- <div id="controls--console">
-          <button id="console__toggle" class="toggle__well">
-            <div id="console__toggle--knob" class="toggle__knob"></div>
-          </button>
-          <label for="console__toggle">Console</label>
-        </div> -->
-        <button
-          id="record"
-          name="control__button"
-          class="button button--circle"
-        >
-          <div id="record__button--indicator" class="button__indicator"></div>
+        <button id="record" name="control__button" class="button">
+          Record
         </button>
       </div>
     </header>
     <main>
       <video id="viewWindow" autoplay></video>
       <div id="downloads">
-        <h2>My Clips</h2>
-        <p>
+        <h2>Clips</h2>
+        <div id="download--files"></div>
+        <p class="info">
           Note: ScreenieBaby thinks it's your responsibility to save your clips.
           I know, unreasonable, but it's true. If you close your browser without
           downloading your clips, they will disappear into the ether.
         </p>
-        <div id="download--files"></div>
       </div>
     </main>
-    <section id="console"></section>
   </body>
 </html>

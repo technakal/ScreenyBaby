@@ -1,6 +1,8 @@
 const TITLE = 'Screenie Baby'.split('');
 const COLORS = ['red', 'teal', 'blue', 'green', 'yellow', 'pink'];
 
+const headerTitle = document.querySelector('#header__title--main');
+headerTitle.addEventListener('click', e => displayTitle(TITLE, COLORS));
 const videoElement = document.querySelector('#viewWindow');
 const downloadElement = document.querySelector('#download--files');
 const consoleElement = document.querySelector('#console');
@@ -25,37 +27,29 @@ const displayTitle = (title, colors) => {
   logoContainer.innerHTML = domElements.join('');
 };
 
+const automateTitlechange = () => {
+  displayTitle(TITLE, COLORS);
+};
+
+// const titleChangeTimer = window.setInterval(automateTitlechange, 1500);
+
 const handleClick = e => {
   const button = e.target;
   const buttonId = e.target.id;
   switch (buttonId) {
     case 'record':
-    case 'record__button--indicator':
-      if (buttonId == 'record') {
-        button.id = 'stop';
-        button.firstElementChild.id = 'stop__button--indicator';
-        util.addClass(button, 'pressed');
-      } else {
-        const parent = button.parentNode;
-        button.id = 'stop__button--indicator';
-        parent.id = 'stop';
-        util.addClass(parent, 'pressed');
-      }
+      button.id = 'stop';
+      button.textContent = 'Recording...';
+      util.addClass(button, 'pressed');
+      displayTitle(TITLE, COLORS);
       const quality = document.querySelector('#videoQuality').value;
       startCapture(quality);
       break;
     case 'stop':
-    case 'stop__button--indicator':
-      if (buttonId == 'stop') {
-        button.id = 'record';
-        button.firstElementChild.id = 'record__button--indicator';
-        util.removeClass(button, 'pressed');
-      } else {
-        const parent = button.parentNode;
-        button.id = 'record__button--indicator';
-        button.parentNode.id = 'record';
-        util.removeClass(parent, 'pressed');
-      }
+      button.id = 'record';
+      button.textContent = 'Record';
+      displayTitle(TITLE, COLORS);
+      util.removeClass(button, 'pressed');
       stopCapture();
       break;
     case 'console__toggle':
@@ -77,28 +71,6 @@ const util = {
   removeClass: (elem, className) => {
     return elem.classList.remove(className);
   },
-  console: {
-    log: msg =>
-      (consoleElement.innerHTML += `<span class="log">${msg}</span><br/>`),
-    error: msg =>
-      (consoleElement.innerHTML += `<span class="error">${msg}</span><br/>`),
-    warn: msg =>
-      (consoleElement.innerHTML += `<span class="warn">${msg}</span><br/>`),
-    info: msg =>
-      (consoleElement.innerHTML += `<span class="info">${msg}</span><br/>`),
-  },
-};
-
-const toggleConsole = toggle => {
-  const isOn = toggle.classList.contains('on');
-  if (isOn) {
-    util.removeClass(toggle, 'on');
-    util.removeClass(consoleElement, 'show');
-  } else {
-    util.addClass(toggle, 'on');
-    util.addClass(consoleElement, 'show');
-  }
-  return true;
 };
 
 const displayMediaOptions = {
