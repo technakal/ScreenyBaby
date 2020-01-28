@@ -89,6 +89,7 @@ async function startCapture(quality) {
     videoBitsPerSecond: quality,
   };
   try {
+    videoElement.classList.add('playing');
     videoElement.srcObject = captureStream;
     mediaRecorder = new MediaRecorder(captureStream, options);
     mediaRecorder.mimeType = 'image/gif';
@@ -110,6 +111,7 @@ async function startCapture(quality) {
 
 const stopCapture = () => {
   if (mediaRecorder) {
+    videoElement.classList.remove('playing');
     mediaRecorder.stop();
     console.log('Stopped.');
     const d = new Date();
@@ -125,7 +127,7 @@ const createFileUri = clipName => {
   try {
     videoTracks.forEach(track => {
       const videoUrl = track;
-      const videoDownloadElement = `<a id="${cleanClipName}" class="button__download" href="${videoUrl}" download="${cleanClipName}">${clipName}</a>`;
+      const videoDownloadElement = `<a id="${cleanClipName}" class="button button__download" href="${videoUrl}" download="${cleanClipName}">${clipName}</a>`;
       downloadElement.innerHTML += videoDownloadElement;
       videoElement.srcObject = null;
       console.log('File added to download library.');

@@ -17,6 +17,7 @@
   /* color scheme */
   --color-main: #ff61be;
   --color-secondary: #ffdef3;
+  --color-tertiary: #2d419c91;
   --color-tertiary: #3b55ce;
   --color-accent: #ffd166;
   --color-neutral-light: #f2f2f2;
@@ -108,6 +109,17 @@ ul {
   list-style: none;
 }
 
+.background__shapes {
+  position: absolute;
+  background: url('../media/shapes.svg') no-repeat;
+  background-size: cover;
+  background-origin: bottom;
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
 /* Buttons */
 
 .button {
@@ -120,18 +132,42 @@ ul {
   transition: all 0.2s ease;
 }
 
+.button:hover {
+  background-color: #002efdcc;
+  border-color: #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .button__download {
-  background: var(--color-tertiary);
-  border-radius: 5px;
-  color: var(--color-neutral-light);
-  margin: 0 0.5rem;
-  padding: 0.5rem 1.5rem;
+  font-size: 16px;
 }
 
 #stop {
-  background: var(--color-main);
+  animation: pulse 1.75s infinite;
+  background: var(--color-accent);
   border: 3px solid var(--color-neutral-dark);
   color: var(--color-neutral-dark);
+  transition: all 0.2s ease;
+}
+
+#stop:hover {
+  border: 3px solid var(--color-neutral-dark);
+  color: var(--color-neutral-dark);
+  transition: all 0.2s ease;
+}
+
+@keyframes pulse {
+  0% {
+    background: var(--color-accent);
+  }
+  50% {
+    background: var(--color-main);
+  }
+
+  100% {
+    background: var(--color-accent);
+  }
 }
 
 .pressed {
@@ -148,7 +184,7 @@ ul {
   flex-flow: row nowrap;
   justify-content: space-between;
   margin-bottom: 1rem;
-  padding: 2rem;
+  padding: 2rem 3rem;
 }
 
 #header__title--main {
@@ -157,6 +193,7 @@ ul {
   max-width: 500px;
   text-transform: uppercase;
   user-select: none;
+  z-index: 2;
 }
 
 .logo__letter {
@@ -193,6 +230,7 @@ ul {
   grid-gap: 10px;
   grid-template-rows: auto;
   justify-items: end;
+  z-index: 2;
 }
 
 /* Main Section */
@@ -203,6 +241,7 @@ main {
   grid-template-rows: auto;
   grid-template-areas: 'd m';
   justify-items: center;
+  z-index: 3;
 }
 
 /* Video Element */
@@ -216,6 +255,12 @@ main {
   max-height: 600px;
   min-height: 600px;
   max-width: 90%;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+#viewWindow.playing {
+  opacity: 1;
 }
 
 /* Downloads Section */
@@ -224,6 +269,7 @@ main {
   grid-area: d;
   padding: 0.5rem 2rem;
   width: 100%;
+  z-index: 3;
 }
 
 #download--files {
@@ -233,8 +279,5 @@ main {
   grid-template-rows: auto;
   grid-gap: 7px;
   justify-items: center;
-}
-
-.info {
-  font-size: 1rem;
+  z-index: 3;
 }

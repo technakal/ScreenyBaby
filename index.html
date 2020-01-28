@@ -9,49 +9,47 @@
     <title>Screenie Baby</title>
   </head>
   <body>
-    <header id="header--main">
-      <h1 id="header__title--main">
-        <div class="logo__letters">
-          <span class="logo__letter logo__letter--red">S</span
-          ><span class="logo__letter logo__letter--yellow">c</span
-          ><span class="logo__letter logo__letter--blue">r</span
-          ><span class="logo__letter logo__letter--green">e</span
-          ><span class="logo__letter logo__letter--pink">e</span
-          ><span class="logo__letter logo__letter--teal">n</span
-          ><span class="logo__letter logo__letter--yellow">i</span
-          ><span class="logo__letter logo__letter--blue">e</span>
-          <span class="logo__letter logo__letter--red">B</span
-          ><span class="logo__letter logo__letter--pink">a</span
-          ><span class="logo__letter logo__letter--yellow">b</span
-          ><span class="logo__letter logo__letter--green">y</span>
+    <div class="wrapper">
+      <div class="background__shapes"></div>
+      <header id="header--main">
+        <h1 id="header__title--main">
+          <div class="logo__letters">
+            <span class="logo__letter logo__letter--red">S</span
+            ><span class="logo__letter logo__letter--yellow">c</span
+            ><span class="logo__letter logo__letter--blue">r</span
+            ><span class="logo__letter logo__letter--green">e</span
+            ><span class="logo__letter logo__letter--pink">e</span
+            ><span class="logo__letter logo__letter--teal">n</span
+            ><span class="logo__letter logo__letter--yellow">i</span
+            ><span class="logo__letter logo__letter--blue">e</span>
+            <span class="logo__letter logo__letter--red">B</span
+            ><span class="logo__letter logo__letter--pink">a</span
+            ><span class="logo__letter logo__letter--yellow">b</span
+            ><span class="logo__letter logo__letter--green">y</span>
+          </div>
+        </h1>
+        <div id="header__controls">
+          <div>
+            <label for="videoQuality">Video Quality</label>
+            <select name="videoQuality" id="videoQuality">
+              <option value="150000">Low</option>
+              <option value="500000">Medium</option>
+              <option value="1000000">High</option>
+              <option value="2500000">Super High</option>
+            </select>
+          </div>
+          <button id="record" name="control__button" class="button">
+            Record
+          </button>
         </div>
-      </h1>
-      <div id="header__controls">
-        <div>
-          <label for="videoQuality">Video Quality</label>
-          <select name="videoQuality" id="videoQuality">
-            <option value="150000">Low</option>
-            <option value="500000">Medium</option>
-            <option value="1000000">High</option>
-            <option value="2500000">Super High</option>
-          </select>
+      </header>
+      <main>
+        <video id="viewWindow" autoplay></video>
+        <div id="downloads">
+          <h2>Clips</h2>
+          <div id="download--files"></div>
         </div>
-        <button id="record" name="control__button" class="button">
-          Record
-        </button>
-      </div>
-    </header>
-    <main>
-      <video id="viewWindow" autoplay></video>
-      <div id="downloads">
-        <h2>Clips</h2>
-        <div id="download--files"></div>
-        <p class="info">
-          Note: ScreenieBaby thinks it's your responsibility to save your clips.
-          I know, unreasonable, but it's true. If you close your browser without
-          downloading your clips, they will disappear into the ether.
-        </p>
-      </div>
-    </main>
+      </main>
+    </div>
   </body>
 </html>
