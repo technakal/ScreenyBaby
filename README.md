@@ -1,6 +1,6 @@
 # ScreenieBaby
 
-A simple web application for capturing and saving your screen. Makes use of the [W3C MediaStream Recording API specification](https://w3c.github.io/mediacapture-record/#MediaRecorderAPI).
+A simple web application for capturing and saving your screen as a webm video. Makes use of the [W3C MediaStream Recording API specification](https://w3c.github.io/mediacapture-record/#MediaRecorderAPI).
 
 The application is entirely client-side. It does not transmit your screen to anywhere, it does not store your data anywhere. Aside from downloading the source files from github.io, the magic happens in your own browser. I don't want your data. Keep it.
 
