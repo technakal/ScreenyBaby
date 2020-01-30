@@ -14,6 +14,11 @@ buttons.forEach(button =>
 let videoTracks = [];
 let mediaRecorder;
 
+/**
+ * Turns the supplied title into a fun approximation of the logo of a certain stuffed friend.
+ * @param {array} title The website title, ScreenieBaby.
+ * @param {array} colors The color scheme to apply to the title.
+ */
 const displayTitle = (title, colors) => {
   const logoContainer = document.querySelector('.logo__letters');
   const domElements = title.map(letter => {
@@ -27,12 +32,20 @@ const displayTitle = (title, colors) => {
   logoContainer.innerHTML = domElements.join('');
 };
 
+/**
+ * A callback function that applies the displayTitle function to the website's title and colors.
+ */
 const automateTitlechange = () => {
   displayTitle(TITLE, COLORS);
 };
 
 // const titleChangeTimer = window.setInterval(automateTitlechange, 1500);
 
+/**
+ * Handles the click event.
+ * Either starts the recording or stops the recording.
+ * @param {event} e The click event
+ */
 const handleClick = e => {
   const button = e.target;
   const buttonId = e.target.id;
@@ -52,22 +65,29 @@ const handleClick = e => {
       util.removeClass(button, 'pressed');
       stopCapture();
       break;
-    case 'console__toggle':
-      toggleConsole(e.target);
-      break;
-    case 'console__toggle--knob':
-      toggleConsole(e.target.parentNode);
-      break;
     default:
       console.warn(`Somehow, you pressed a button that doesn't exist.`);
       break;
   }
 };
 
+/**
+ * Utility functions.
+ */
 const util = {
+  /**
+   * Adds the class to the elem.
+   * @param {HTMLElement} elem The DOMElement to which the new class should be added
+   * @param {string} className The class to apply to the element
+   */
   addClass: (elem, className) => {
     return elem.classList.add(className);
   },
+  /**
+   * Removes the class to the elem.
+   * @param {HTMLElement} elem The DOMElement to which the new class should be removed
+   * @param {string} className The class to remove from the element
+   */
   removeClass: (elem, className) => {
     return elem.classList.remove(className);
   },
@@ -80,6 +100,11 @@ const displayMediaOptions = {
   audio: false,
 };
 
+/**
+ * Records the video.
+ * Creates the Capture Stream and the MediaRecorder.
+ * @param {number} quality The videoBitsPerSecond to record the video in
+ */
 async function startCapture(quality) {
   let captureStream = await navigator.mediaDevices.getDisplayMedia(
     displayMediaOptions
@@ -109,6 +134,9 @@ async function startCapture(quality) {
   }
 }
 
+/**
+ * Stops the video recording.
+ */
 const stopCapture = () => {
   if (mediaRecorder) {
     videoElement.classList.remove('playing');
@@ -122,6 +150,12 @@ const stopCapture = () => {
   }
 };
 
+/**
+ * Converts the video data into a downloadable blob.
+ * Appends to the DOM.
+ * Triggers the auto-download process.
+ * @param {string} clipName The name of the clip
+ */
 const createFileUri = clipName => {
   const cleanClipName = clipName.split(' ').join('');
   try {
@@ -139,6 +173,10 @@ const createFileUri = clipName => {
   }
 };
 
+/**
+ * Automatically initiates the file download for the clip with the supplied id
+ * @param {string} id The id of the clip to download
+ */
 const autoDownloadFile = id => {
   console.log('Beginning download...');
   document.getElementById(id).click();
