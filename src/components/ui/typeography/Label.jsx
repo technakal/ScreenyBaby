@@ -1,12 +1,12 @@
-import { children } from "solid-js";
+import { children } from 'solid-js';
 
-const Label = (props) => {
-  const c = children(() => props.children);
-  return (
-    <label style={{ "font-weight": 700 }} {...props}>
-      {c()}
-    </label>
-  );
+const Label = props => {
+	const c = children(() => props.children);
+	return (
+		<label class="font-bold p-2" {...props}>
+			{c()}
+		</label>
+	);
 };
 
 export default Label;

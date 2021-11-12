@@ -15,16 +15,20 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/user-event": "^13.2.1",
+    "autoprefixer": "^10.4.0",
     "jest": "^27.2.0",
+    "postcss": "^8.3.11",
     "sass": "^1.41.0",
     "solid-jest": "^0.2.0",
     "solid-testing-library": "^0.2.1",
+    "tailwindcss": "^2.2.19",
     "vite": "^2.5.1",
     "vite-plugin-solid": "^2.0.3"
   },
   "dependencies": {
     "nanoid": "^3.1.25",
     "npm-run-all": "^4.1.5",
+    "ramda": "^0.27.1",
     "solid-js": "^1.1.1"
   }
 }
