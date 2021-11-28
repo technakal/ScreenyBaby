@@ -1,7 +1,7 @@
 import { FOOTER, PRIMARY_PINK } from '../../constants';
 import SectionContainer from '../containers/SectionContainer';
 import HeartIcon from '../icons/HeartIcon';
-import KoFiWidget from '../widgets/KoFiWidget';
+import KoFiWidget from '../widgets/kofi/KoFiWidget';
 
 const Footer = () => (
 	<SectionContainer
