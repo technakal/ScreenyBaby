@@ -1,4 +1,4 @@
-import kofi from './ko-fi_icon_RGB_stroke.png';
+// import kofi from './ko-fi_icon_RGB_stroke.png';
 import Button from '../../ui/Button';
 import Image from '../../ui/Image';
 
