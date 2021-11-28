@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+@import './reset.css';
 
 :root {
 	--text-gray-400: #9ca3af;
@@ -13,17 +14,28 @@
 
 body {
 	margin-top: 5rem;
-	text-align: center;
+	padding: 1rem;
+	width: 100%;
+}
+
+html {
+	width: 100%;
 }
 
 #title,
 #title > span {
 	font-family: 'Chango', cursive;
-	font-size: 4rem;
-	text-align: center;
+	font-size: 2.5rem;
 	margin-top: 0;
 	margin-bottom: 0;
 	-webkit-text-stroke: 1px black;
+}
+
+@media screen and (min-width: 768px) {
+	#title,
+	#title > span {
+		font-size: 4rem;
+	}
 }
 
 span,
@@ -59,4 +71,17 @@ a {
 }
 .text-pink-400 {
 	color: #e03997;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.m-auto {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mb-4 {
+	margin-bottom: 1.5rem;
 }
