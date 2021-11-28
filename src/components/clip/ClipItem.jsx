@@ -25,11 +25,11 @@ const ClipItem = props => {
 	};
 
 	return (
-		<li class="flex flex-row align-center justify-between px-2 py-4 shadow-md w-full">
+		<li class="button flex flex-row align-center justify-between px-2 py-4 shadow-md w-full">
 			<a href={props.url} download={props.name}>
 				<DownLoadIcon
 					aria-label="Download Clip"
-					class="h-8 pointer w-8"
+					class="h-8 cursor-pointer w-8"
 					fill={PRIMARY_PINK}
 				/>
 			</a>
@@ -46,25 +46,29 @@ const ClipItem = props => {
 					/>
 					<CheckIcon
 						aria-label="Save Changes"
-						class="h-8 pointer w-8"
+						class="h-8 cursor-pointer w-8"
 						fill={PRIMARY_PINK}
 						onClick={onEditSave}
 					/>
 					<XIcon
 						aria-label="Cancel Changes"
-						class="h-8 pointer w-8"
+						class="h-8 cursor-pointer w-8"
 						fill={PRIMARY_PINK}
 						onClick={setEdit}
 					/>
 				</div>
 			) : (
 				<>
-					<p class="pointer p-2" onClick={onEdit}>
+					<p
+						aria-label="Click to rename clip"
+						class="cursor-pointer p-2"
+						onClick={onEdit}
+						title="rename clip">
 						{props.name}
 					</p>
 					<TrashIcon
 						aria-label="Delete Clip"
-						class="h-8 pointer w-8"
+						class="h-8 cursor-pointer w-8"
 						fill={PRIMARY_PINK}
 						onClick={props.removeClip}
 					/>

@@ -1,0 +1,20 @@
+@keyframes perk-up {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		box-shadow: $tw-shadow-lg;
+		transform: translateY(-0.25rem);
+	}
+}
+
+@keyframes bounce {
+	0% {
+	}
+	50% {
+		box-shadow: $tw-shadow-sm;
+		transform: translateY(-0.1rem);
+	}
+	100% {
+	}
+}

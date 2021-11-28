@@ -13,6 +13,7 @@ export const BLUE = 'blue';
 export const INDIGO = 'indigo';
 export const PURPLE = 'purple';
 export const PINK = 'pink';
+export const KOFI_COLOR = '#29abe0';
 
 const TEXT_GRAY = 'text-gray-400';
 const TEXT_RED = 'text-red-400';

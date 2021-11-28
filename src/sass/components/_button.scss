@@ -1,0 +1,22 @@
+.button {
+	align-items: center;
+	box-shadow: $tw-shadow-md;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	transition: all 0.2s ease;
+	&--kofi {
+		background-color: $color-kofi;
+		margin: 0 auto;
+		width: clamp(200px, 225px, 300px);
+		padding: 0.5rem;
+	}
+	&:hover {
+		box-shadow: $tw-shadow-lg;
+		transform: translateY(-0.3rem);
+	}
+	&:active {
+		box-shadow: $tw-shadow-sm;
+		transform: translateY(0.05rem);
+	}
+}

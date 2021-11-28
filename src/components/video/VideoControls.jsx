@@ -2,11 +2,13 @@ import SectionContainer from '../containers/SectionContainer';
 import Label from '../ui/typeography/Label';
 import SelectInput from '../ui/inputs/SelectInput';
 import Button from '../ui/Button';
-import { VIDEO_QUALITY } from './constant';
+import SubTitleContainer from '../ui/typeography/SubTitle';
+import { SECTION_TITLE } from '../../constants';
 
 const VideoControls = props => {
 	return (
 		<SectionContainer class="control__main">
+			<SubTitleContainer type={SECTION_TITLE} text="Recording Controls" />
 			<form class="control__main--group mb-4 py-4 w-full">
 				<div>
 					<Label class="text-gray-700" htmlFor="videoQuality">
@@ -22,7 +24,7 @@ const VideoControls = props => {
 				</div>
 			</form>
 			<Button
-				class="control__main--button"
+				class="bg-pink-500 hover:bg-pink-400 text-lg text-white w-32"
 				name="control-record"
 				onClick={props.handleRecording}>
 				{props.recording() ? 'Stop' : 'Record'}
