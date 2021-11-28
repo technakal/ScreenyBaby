@@ -1,7 +1,6 @@
 import { formatISO } from 'date-fns';
 import { createSignal } from 'solid-js';
 import useToggle from './useToggle';
-import { log } from './log';
 
 const displayOptions = {
 	audio: false,

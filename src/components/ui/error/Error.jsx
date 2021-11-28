@@ -1,22 +1,21 @@
 import {
-	__,
+	always,
 	assoc,
 	both,
 	compose,
 	cond,
 	identity,
-	always,
-	T,
+	map,
 	prop,
-	map
+	T,
+	__
 } from 'ramda';
 import {
-	isValue,
-	isNotEmpty,
 	isArray,
-	isFunction
+	isFunction,
+	isNotEmpty,
+	isValue
 } from '../../../services/util';
-import { log } from '../../../services/log';
 
 const executeIfFunction = cond([
 	[isFunction, v => v()],
@@ -30,12 +29,9 @@ const hasErrorArray = compose(
 );
 const hasError = compose(isValue, executeIfFunction, prop('error'));
 
-const Error = props => {
-	console.log(props);
-	return (
-		<div class="text-red-500 text-xl">{executeIfFunction(props.error)}</div>
-	);
-};
+const Error = props => (
+	<div class="text-red-500 text-xl">{executeIfFunction(props.error)}</div>
+);
 
 const Errors = compose(
 	map(compose(Error, assoc('error', __, {}))),
@@ -47,8 +43,7 @@ const ErrorContainer = compose(
 		[hasErrorArray, Errors],
 		[hasError, Error],
 		[T, always(null)]
-	]),
-	log('input')
+	])
 );
 
 export default ErrorContainer;

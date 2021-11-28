@@ -1,4 +1,3 @@
-import { createEffect } from 'solid-js';
 import ClipContainer from './components/clip/ClipContainer';
 import SectionContainer from './components/containers/SectionContainer';
 import Footer from './components/layout/Footer';
@@ -9,8 +8,6 @@ import useClipStore from './store/useClipStore';
 
 function App() {
 	const [clipStore, { addClip, renameClip, removeClip }] = useClipStore([]);
-
-	createEffect(() => console.log(clipStore.clips));
 
 	return (
 		<>

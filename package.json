@@ -7,7 +7,7 @@
     "watch-sass": "sass src/sass:src/css -w",
     "start": "vite",
     "dev": "npm-run-all -p watch-sass start",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d static",
     "build": "npm-run-all build-sass && vite build",
     "serve": "vite preview",
     "test": "jest"
