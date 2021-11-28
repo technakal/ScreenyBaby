@@ -1,4 +1,4 @@
-import { children, mergeProps } from 'solid-js';
+import { children, mergeProps, splitProps } from 'solid-js';
 
 const Icon = props => {
 	const c = children(() => props.children);
@@ -14,7 +14,7 @@ const Icon = props => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			class={`${props.classes} ${withDefaultProps.class}`}
+			class={`${withDefaultProps.class}`}
 			viewBox={withDefaultProps.viewBox}
 			fill={withDefaultProps.fill}
 			{...props}>

@@ -8,7 +8,7 @@ const Options = props => (
 
 const SelectInput = props => (
 	<select
-		class="border border-gray-400 p-2 rounded-md"
+		class={`${props.class} border border-gray-400 p-2 rounded-md`}
 		id={props.id}
 		ref={props.ref}
 		onChange={props.onChange}>

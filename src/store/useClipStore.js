@@ -1,5 +1,4 @@
 import { createStore, produce } from 'solid-js/store';
-import Clip from '../models/clip';
 
 const useClipStore = (initial = []) => {
 	const [store, setStore] = createStore({ clips: initial });
@@ -7,7 +6,7 @@ const useClipStore = (initial = []) => {
 	const addClip = clip =>
 		setStore(
 			'clips',
-			produce(clips => clips.push(new Clip(...clip)))
+			produce(clips => clips.push(clip))
 		);
 
 	const renameClip = (id, newName) => {

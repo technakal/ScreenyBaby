@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../sass/vendors/_tailwind.scss"],"names":[],"mappings":"AAAA;AACA;AACA","file":"main.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/base/_typography.scss","../sass/base/_base.scss","../sass/vendors/_tailwind.scss"],"names":[],"mappings":"AAAQ;ACAR;AAAA;AAAA;EAGC;EACA;EACA;;;AAGD;EACC;;;ADLD;EACC;;;AELD;AACA;AACA","file":"main.css"}

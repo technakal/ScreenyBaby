@@ -1,15 +1,20 @@
 import SubTitleContainer from '../ui/typeography/SubTitle';
 import Title from '../ui/typeography/Title';
-import { SUBTITLE } from '../../constants';
+import { HEADER, SUBTITLE } from '../../constants';
+import SectionContainer from '../containers/SectionContainer';
 
-const Header = () => (
-	<header class="header__main mb-6 mt-8 pb-4 pt-10">
-		<Title text="Screenie Baby" />
-		<SubTitleContainer
-			text="A simple way to share your screen with your friends"
-			type={SUBTITLE}
-		/>
-	</header>
+const Header = props => (
+	<SectionContainer
+		type={HEADER}
+		class={`header__main bg-pink-200 mb-6 pb-4 pt-16 ${props.class}`}>
+		<div class="container mx-auto p-6 md:w-3/5">
+			<Title text={props.title} />
+			<SubTitleContainer
+				text="A simple way to share your screen with your friends"
+				type={SUBTITLE}
+			/>
+		</div>
+	</SectionContainer>
 );
 
 export default Header;

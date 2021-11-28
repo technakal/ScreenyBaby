@@ -1,9 +1,11 @@
 import { createSignal } from 'solid-js';
+import { PRIMARY_PINK } from '../../constants';
 import useToggle from '../../services/useToggle';
 import DownLoadIcon from '../icons/DownloadIcon';
 import XIcon from '../icons/XIcon';
-import Button from '../ui/Button';
 import TextInput from '../ui/inputs/TextInput';
+import CheckIcon from '../icons/CheckIcon';
+import TrashIcon from '../icons/TrashIcon';
 
 const ClipItem = props => {
 	const [edit, setEdit] = useToggle(false);
@@ -23,16 +25,16 @@ const ClipItem = props => {
 	};
 
 	return (
-		<li class="flex flex-row">
-			<a href={props.downloadRef} download={props.name}>
+		<li class="flex flex-row align-center justify-between px-2 py-4 shadow-md w-full">
+			<a href={props.url} download={props.name}>
 				<DownLoadIcon
-					class="h-6 w-6"
-					classes="pointer"
-					fill="rgba(236, 72, 153)"
+					aria-label="Download Clip"
+					class="h-8 pointer w-8"
+					fill={PRIMARY_PINK}
 				/>
 			</a>
 			{edit() ? (
-				<>
+				<div class="flex flex-row align-center justify-between">
 					<TextInput
 						ref={input}
 						type="text"
@@ -42,24 +44,32 @@ const ClipItem = props => {
 							e.key === 'Enter' ? onEditSave() : null;
 						}}
 					/>
-					<div class="flex flex-row">
-						<Button onClick={onEditSave}>Save</Button>
-						<Button class="ml-2" onClick={setEdit}>
-							Cancel
-						</Button>
-					</div>
-				</>
+					<CheckIcon
+						aria-label="Save Changes"
+						class="h-8 pointer w-8"
+						fill={PRIMARY_PINK}
+						onClick={onEditSave}
+					/>
+					<XIcon
+						aria-label="Cancel Changes"
+						class="h-8 pointer w-8"
+						fill={PRIMARY_PINK}
+						onClick={setEdit}
+					/>
+				</div>
 			) : (
-				<p class="pointer" onClick={onEdit}>
-					{props.name}
-				</p>
+				<>
+					<p class="pointer p-2" onClick={onEdit}>
+						{props.name}
+					</p>
+					<TrashIcon
+						aria-label="Delete Clip"
+						class="h-8 pointer w-8"
+						fill={PRIMARY_PINK}
+						onClick={props.removeClip}
+					/>
+				</>
 			)}
-			<XIcon
-				class="h-6 w-6"
-				classes="pointer"
-				fill="rgba(236, 72, 153)"
-				onClick={props.removeClip}
-			/>
 		</li>
 	);
 };
