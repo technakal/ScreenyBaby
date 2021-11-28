@@ -13,6 +13,9 @@ const Header = props => (
 				text="A simple way to share your screen with your friends"
 				type={SUBTITLE}
 			/>
+			<p class="italic text-sm">
+				Assuming you have friends. It's cool if you don't.
+			</p>
 		</div>
 	</SectionContainer>
 );
