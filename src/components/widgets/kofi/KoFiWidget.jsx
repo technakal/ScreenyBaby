@@ -7,12 +7,12 @@ const KoFiWidget = () => {
 		<Button
 			class="button button--kofi rounded-full text-sm text-white"
 			onClick={() => window.open('https://ko-fi.com/technakal', '_blank')}>
-			<Image
+			{/* <Image
 				aria-label="Ko-Fi Logo"
 				class="w-8 h-8"
 				src={kofi}
 				alt="Kofi donation icon"
-			/>
+			/> */}
 			Support Me on Ko-Fi
 		</Button>
 	);
